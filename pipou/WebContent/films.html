@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>films</title>
+
+
+<script type="text/javascript" src="commun_js/jquery/jquery-3.2.1.min.js" ></script>
+<script type="text/javascript" src="commun_js/jquery/jquery-ui-1.12.1.min.js" ></script>
+<link rel="stylesheet" href="commun_js/jquery/jquery-ui-1.12.1.min.css" />           
+
+<script type="text/javascript">
+
+var film;
+
+var films = [];
+
+function Film(nom, realisateur, dateSortie, tarifDVD, tarifTelechargement) {
+	this.nom = nom;
+	this.realisateur = realisateur;
+	this.dateSortie = dateSortie;
+	this.tarifDVD = tarifDVD;
+	this.tarifTelechargement = tarifTelechargement;
+}
+
+$(document).ready(function() {
+	
+});
+
+function getfilm(id) {
+	$.ajax({
+		method : "get",
+		url : "getfilm.htm",
+		dataType : "json",
+		data : {id},
+		success : function(data) {
+			film = data;
+			afficherUn();
+		}
+	});
+}
+
+function listerfilms() {
+	$.ajax({
+		method : "get",
+		url : "listerfilms.htm",
+		dataType : "json",
+		success : function(data) {
+			films = data;
+			afficherTout();
+		}
+	});
+}
+
+function afficherUn() {
+	var mess = "";
+	mess += film.nom + film.realisateur	;// + film.dateSortie;
+	alert(mess);
+}
+
+function afficherTout() {
+	var mess = "";
+	for (var i=0 ; i<films.length ; i++) {
+		mess += films[i].nom + " ";
+	}
+	alert(mess);
+}
+</script>
+
+</head>
+
+<body>
+
+<input type="submit" value="Lister les films" onclick="listerfilms()"/>
+
+<input type="submit" value="Un film" onclick="getfilm(2)"/>
+
+</body>
+</html>
