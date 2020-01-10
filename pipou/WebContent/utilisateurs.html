@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Gestion des utilisateurs</title>
+
+<script type="text/javascript" src="commun_js/jquery/jquery-3.2.1.min.js" ></script>
+<script type="text/javascript" src="commun_js/jquery/jquery-ui-1.12.1.min.js" ></script>
+<link rel="stylesheet" href="commun_js/jquery/jquery-ui-1.12.1.min.css" />           
+
+<script type="text/javascript">
+
+var utilisateurs = [];
+
+function Utilisateur(nom,prenom) {
+	this.nom = nom;
+	this.prenom = prenom;
+}
+
+$(document).ready(function() {
+	
+});
+
+function enregistrer() {
+	var u = new Utilisateur($("#nom").val(),$("#prenom").val());
+	
+	$.ajax({
+		method : "get",
+		url : "enregistrer.htm",
+		data : u,
+		dataType : "json",
+		success : function(data) {
+			if (data.res) {
+				alert("succes");
+			}
+			else {
+				alert("echec");
+			}
+			
+		}
+	});
+}
+
+function lister() {
+	$.ajax({
+		method : "get",
+		url : "lister.htm",
+		dataType : "json",
+		success : function(data) {
+			utilisateurs = data;
+			afficherTout();
+		}
+	});
+}
+
+function afficherTout() {
+	var mess = "";
+	for (var i=0 ; i<utilisateurs.length ; i++) {
+		mess += utilisateurs[i].nom + " ";
+	}
+	alert(mess);
+}
+</script>
+
+</head>
+
+<body>
+
+Nom : 
+<input id="nom" type="text" />
+Prénom :
+<input id="prenom" type="text" />
+<input type="submit" value="Enregistrer" onclick="enregistrer()"/>
+
+<br /><br />
+
+<input type="submit" value="Lister" onclick="lister()"/>
+
+</body>
+</html>
+
