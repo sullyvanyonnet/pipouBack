@@ -40,8 +40,7 @@ public class FilmDao {
 	
 	//FILM
 	public Film getFilm(int id) {
-		Film film = (Film) em.createQuery("select u from Film u where idFilm=id").getSingleResult();
-		System.out.println(film.getNom());
+		Film film = (Film) em.createQuery("select u from Film u where u.idFilm LIKE :id").setParameter("id", id).getSingleResult();
 		return film;
 	}
 }

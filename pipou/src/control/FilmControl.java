@@ -26,20 +26,12 @@ public class FilmControl {
 	@RequestMapping(value="/listerfilms",method=RequestMethod.GET)
 	public @ResponseBody List<Film> listerFilm() {
 		System.out.println("listerFilms");
-		
 		return dao.listerFilms();
 	}
 	
-	/*@RequestMapping(value="/getfilm{id}",method=RequestMethod.GET)
-	public @ResponseBody Film listerFilm(@PathVariable("id") Integer id) {
-		System.out.println("getFilm");
-		return dao.getFilm(2);
-	}*/
-	
 	@RequestMapping(value="/getfilm{id}",method=RequestMethod.GET)
 	public @ResponseBody Film listerFilm(@RequestParam("id") int id) {
-		System.out.println("getFilm "+id);
-		return dao.getFilm(2);
+		return dao.getFilm(id);
 	}
 
 }
