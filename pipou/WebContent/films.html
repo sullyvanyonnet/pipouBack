@@ -14,21 +14,13 @@
 var film = [];
 var films = [];
 
-/*function Film(nom, realisateur, dateSortie, tarifDVD, tarifTelechargement) {
-	this.nom = nom;
-	this.realisateur = realisateur;
-	this.dateSortie = dateSortie;
-	this.tarifDVD = tarifDVD;
-	this.tarifTelechargement = tarifTelechargement;
-}*/
-
 $(document).ready(function() {
 	
 });
 
 function getfilm(id) {
 	$.ajax({
-		method : "get",
+		method : "post",
 		url : "getfilm.htm",
 		dataType : "json",
 		data : {id},
@@ -42,7 +34,7 @@ function getfilm(id) {
 function listerfilms() {
 	films = [];
 	$.ajax({
-		method : "get",
+		method : "post",
 		url : "listerfilms.htm",
 		dataType : "json",
 		success : function(data) {

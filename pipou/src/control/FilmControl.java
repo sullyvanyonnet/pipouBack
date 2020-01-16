@@ -23,13 +23,13 @@ public class FilmControl {
 	public FilmControl() {
 	}
 	
-	@RequestMapping(value="/listerfilms",method=RequestMethod.GET)
+	@RequestMapping(value="/listerfilms",method=RequestMethod.POST)
 	public @ResponseBody List<Film> listerFilm() {
 		System.out.println("listerFilms");
 		return dao.listerFilms();
 	}
 	
-	@RequestMapping(value="/getfilm{id}",method=RequestMethod.GET)
+	@RequestMapping(value="/getfilm{id}",method=RequestMethod.POST)
 	public @ResponseBody Film listerFilm(@RequestParam("id") int id) {
 		return dao.getFilm(id);
 	}
