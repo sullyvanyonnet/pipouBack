@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,14 +37,13 @@ public class UtilisateurControl {
 		return dao.listerUtilisateurs();
 	}
 
-	@RequestMapping(value="/enregistrer",method=RequestMethod.GET)
+	@RequestMapping(value="/enregistrer",method=RequestMethod.POST)
 	public @ResponseBody Resultat enregistrer(
-			@ModelAttribute @Valid Utilisateur u, BindingResult bres 
-			// ?? @ModelAttribute(value="client" @Valid Utilisateur u, BindingResult bres 
-			
+			@RequestBody @Valid Utilisateur u, BindingResult bres			
 		) {
 		System.out.println("enregistrer");
-		
+		System.out.println(u.getNom());
+		System.out.println(u.getPrenom());
 		Resultat res = new Resultat();
 		
 		if (bres.hasErrors()) {
