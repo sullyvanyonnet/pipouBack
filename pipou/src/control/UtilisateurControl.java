@@ -39,11 +39,9 @@ public class UtilisateurControl {
 
 	@RequestMapping(value="/enregistrer",method=RequestMethod.POST)
 	public @ResponseBody Resultat enregistrer(
-			@RequestBody @Valid Utilisateur u, BindingResult bres			
+			@RequestBody @Valid Client c, BindingResult bres			
 		) {
-		System.out.println("enregistrer");
-		System.out.println(u.getNom());
-		System.out.println(u.getPrenom());
+		dao.enregistrerClient(c);
 		Resultat res = new Resultat();
 		
 		if (bres.hasErrors()) {
@@ -52,21 +50,10 @@ public class UtilisateurControl {
 				System.out.println(fe.getField()+" "+fe.getDefaultMessage());
 				res.getErr().put(fe.getField(), fe.getDefaultMessage());
 			}
-
 		}
 		else {
 			res.setRes(true);
-			Client u2 = new Client();
-			u2.setNom("zzzz");
-			u2.setPrenom("ppp");
-			u2.setLogin("login");
-			u2.setPassword("123456");
-			dao.enregistrerClient(u2);
-			
-			//dao.enregistrerUtilisateur(u);
 		}
-		
-		
 		
 		return res;
 	}
