@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>panier</title>
+
+
+<script type="text/javascript" src="commun_js/jquery/jquery-3.2.1.min.js" ></script>
+<script type="text/javascript" src="commun_js/jquery/jquery-ui-1.12.1.min.js" ></script>
+<link rel="stylesheet" href="commun_js/jquery/jquery-ui-1.12.1.min.css" />           
+
+<script type="text/javascript">
+
+function Panier(adresseFacturation, idClient) {
+	this.adresseFacturation = adresseFacturation;
+	this.idClient = idClient;
+}
+
+$(document).ready(function() {
+	
+});
+
+function enregistrerPanier() {
+	var p = new Panier($("#adresseFacturation").val(),$("#idClient").val());
+	
+	$.ajax({
+		method : "get",
+		url : "enregistrerPanier.htm",
+		data : p,
+		dataType : "json",
+		success : function(data) {
+			if (data.res) {
+				alert("succes");
+			}
+			else {
+				alert("echec");
+			}
+			
+		}
+	});
+}
+
+</script>
+
+</head>
+
+<body>
+
+Adresse : 
+<input id="adresseFacturation" type="text" />
+idClient :
+<input id="idClient" type="text" />
+<input type="submit" value="EnregistrerPanier" onclick="enregistrerPanier()"/>
+
+</body>
+</html>
