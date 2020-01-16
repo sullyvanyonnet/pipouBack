@@ -24,10 +24,12 @@ public class Film {
 	
 	Date dateSortie;	//type ?
 	
-	Integer tarifDvd;
+	Integer tarif;
 	
-	Integer tarifTelechargement;
+	String lienImage;
 
+	String synopsis;
+	
 	public Integer getIdFilm() {
 		return idFilm;
 	}
@@ -60,20 +62,29 @@ public class Film {
 		this.dateSortie = dateSortie;
 	}
 
-	public Integer getTarifDvd() {
-		return tarifDvd;
+	public Integer getTarif() {
+		return tarif;
 	}
 
-	public void setTarifDvd(Integer tarifDvd) {
-		this.tarifDvd = tarifDvd;
+	public void setTarif(Integer tarifDvd) {
+		this.tarif = tarifDvd;
 	}
 
-	public Integer getTarifTelechargement() {
-		return tarifTelechargement;
+	public void setSynopsis(String nom) {
+		this.synopsis = nom;
 	}
 
-	public void setTarifTelechargement(Integer tarifTelechargement) {
-		this.tarifTelechargement = tarifTelechargement;
+	public String getSynopsis() {
+		return synopsis;
 	}
+	
+	public void setlienImage(String nom) {
+		this.lienImage = nom;
+	}
+
+	public String getslienImage() {
+		return lienImage;
+	}
+
 	
 }
