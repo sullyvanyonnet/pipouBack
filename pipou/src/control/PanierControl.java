@@ -26,6 +26,11 @@ public class PanierControl {
 	public PanierControl() {
 	}
 	
+	/*@RequestMapping(value="/getpanier{id}",method=RequestMethod.POST)
+	public @ResponseBody Panier getPanier(@RequestParam("id") int id) {
+		return dao.getPanier(id);
+	}*/
+	
 	@RequestMapping(value="/enregistrerPanier",method=RequestMethod.GET)
 	public @ResponseBody Resultat enregistrerPanier(
 			@ModelAttribute @Valid Panier p, BindingResult bres 

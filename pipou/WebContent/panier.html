@@ -11,6 +11,8 @@
 
 <script type="text/javascript">
 
+var panier = [];
+
 function Panier(adresseFacturation, idClient) {
 	this.adresseFacturation = adresseFacturation;
 	this.idClient = idClient;
@@ -40,6 +42,25 @@ function enregistrerPanier() {
 	});
 }
 
+function getpanier(id) {
+	$.ajax({
+		method : "post",
+		url : "getpanier.htm",
+		dataType : "json",
+		data : {id},
+		success : function(data) {
+			panier=data;
+			afficherUn();
+		}
+	});
+}
+
+function afficherUn() {
+	var mess = "";
+	mess += panier.adresseFacturation ;	
+	alert(mess);
+}
+
 </script>
 
 </head>
@@ -51,6 +72,8 @@ Adresse :
 idClient :
 <input id="idClient" type="text" />
 <input type="submit" value="EnregistrerPanier" onclick="enregistrerPanier()"/>
-
+<br/>
+<br/>
+<input type="submit" value="Un panier" onclick="getpanier(1)"/>
 </body>
 </html>

@@ -38,4 +38,9 @@ public class PanierDao {
 		em.persist(p);
 		em.getTransaction().commit();		
 	}
+
+	/*public Panier getPanier(int id) {
+		Panier panier = (Panier) em.createQuery("select u from Panier u where u.idPanier LIKE :id").setParameter("id", id).getSingleResult();
+		return panier;
+	}*/
 }
