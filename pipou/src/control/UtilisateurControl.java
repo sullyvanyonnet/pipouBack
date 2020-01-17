@@ -55,18 +55,19 @@ public class UtilisateurControl {
 		return res;
 	}
 	
-	@RequestMapping(value="/connection",method=RequestMethod.POST)
+	@RequestMapping(value="/client/connection",method=RequestMethod.POST)
 	public @ResponseBody Integer enregistrer(
-			 BindingResult bres			
+			@RequestParam("login")  String login,@RequestParam("password")String pwd , BindingResult bres			
 		) {
-		/*
+		
+		
+		Resultat res = new Resultat();
 		Client c = dao.RechercheUtilisateur(login, pwd);
 		if( c != null) {
 			return c.getIdUtilisateur();
 		};
 		bres.addError(new ObjectError("Login incorrect", "Login incorrect"));
-		return null;*/
-		return 1;
+		return null;
 	}
 
 }
