@@ -39,6 +39,11 @@ public class Dao {
 
 	}
 
+	public Client RechercheUtilisateur(String login,String pwd) {
+		Client lst = (Client) em.createQuery("select u from Client u.password LIKE :pwd && u.login LIKE :login").setParameter("login", login).setParameter("pwd",pwd).getSingleResult();;
+		return lst;
+	}
+	
 	public boolean enregistrerUtilisateur(Utilisateur u) {
 
 		em.getTransaction().begin();

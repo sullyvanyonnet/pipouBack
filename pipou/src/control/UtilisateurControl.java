@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import bean.Client;
@@ -51,6 +53,20 @@ public class UtilisateurControl {
 		}
 		
 		return res;
+	}
+	
+	@RequestMapping(value="/connection",method=RequestMethod.POST)
+	public @ResponseBody Integer enregistrer(
+			 BindingResult bres			
+		) {
+		/*
+		Client c = dao.RechercheUtilisateur(login, pwd);
+		if( c != null) {
+			return c.getIdUtilisateur();
+		};
+		bres.addError(new ObjectError("Login incorrect", "Login incorrect"));
+		return null;*/
+		return 1;
 	}
 
 }
