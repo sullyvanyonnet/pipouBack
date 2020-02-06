@@ -17,12 +17,6 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer idClient;
 	
-	public Integer getIdUtilisateur() {
-		return idClient;
-	}
-	public void setIdUtilisateur(Integer idUtilisateur) {
-		this.idClient = idUtilisateur;
-	}
 	@NotEmpty(message="Le nom ne peut pas être vide")
 	String nom;
 	
@@ -34,6 +28,13 @@ public class Client {
 	
 	@NotEmpty(message="Le prénom ne peut pas être vide")
 	String login;
+	
+	public Integer getIdUtilisateur() {
+		return idClient;
+	}
+	public void setIdUtilisateur(Integer idUtilisateur) {
+		this.idClient = idUtilisateur;
+	}
 	
 	public String getPassword() {
 		return password;

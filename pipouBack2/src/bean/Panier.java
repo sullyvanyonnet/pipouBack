@@ -5,39 +5,35 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name="Panier")
 public class Panier {
 
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer idPanier;
-	
 	String adresseFacturation;
-
-	Integer Client_idClient;
+	Integer Client_idClient;		/*fk ?*/
 	
-	public Integer getId() {
+	public Integer getIdPanier() {
 		return idPanier;
 	}
-	public void setId(Integer id) {
-		this.idPanier = id;
-	}	
+	public void setIdPanier(Integer idPanier) {
+		this.idPanier = idPanier;
+	}
 	public String getAdresseFacturation() {
 		return adresseFacturation;
 	}
 	public void setAdresseFacturation(String adresseFacturation) {
 		this.adresseFacturation = adresseFacturation;
 	}
-	public Integer getIdClient() {
+	public Integer getClient_idClient() {
 		return Client_idClient;
 	}
-	public void setIdClient(Integer idClient) {
-		this.Client_idClient = idClient;
+	public void setClient_idClient(Integer client_idClient) {
+		Client_idClient = client_idClient;
 	}
 	
 }

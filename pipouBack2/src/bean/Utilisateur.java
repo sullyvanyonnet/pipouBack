@@ -17,12 +17,6 @@ public class Utilisateur {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer idUtilisateur;
 	
-	public Integer getIdUtilisateur() {
-		return idUtilisateur;
-	}
-	public void setIdUtilisateur(Integer idUtilisateur) {
-		this.idUtilisateur = idUtilisateur;
-	}
 	@NotEmpty(message="Le nom ne peut pas être vide")
 	@Size(min=3 , message="Le nom doit avoir au moins 3 caractères")
 	String nom;
@@ -30,6 +24,13 @@ public class Utilisateur {
 	@NotEmpty(message="Le prénom ne peut pas être vide")
 	@Size(min=3 , message="Le prénom doit avoir au moins 3 caractères")
 	String prenom;
+	
+	public Integer getIdUtilisateur() {
+		return idUtilisateur;
+	}
+	public void setIdUtilisateur(Integer idUtilisateur) {
+		this.idUtilisateur = idUtilisateur;
+	}
 	
 	public String getNom() {
 		return nom;
