@@ -21,38 +21,37 @@ public class PanierControl {
 
 	@Autowired
 	Dao dao;
-	
+
 	public PanierControl() {
 	}
-	
-	/*@RequestMapping(value="/getpanier{id}",method=RequestMethod.POST)
-	public @ResponseBody Panier getPanier(@RequestParam("id") int id) {
-		return dao.getPanier(id);
-	}*/
-	
-	@RequestMapping(value="/enregistrerPanier",method=RequestMethod.GET)
-	public @ResponseBody Resultat enregistrerPanier(
-			@ModelAttribute @Valid Panier p, BindingResult bres 
-			// ?? @ModelAttribute(value="client" @Valid Utilisateur u, BindingResult bres 
-			
-		) {
+
+	/*
+	 * @RequestMapping(value="/getpanier{id}",method=RequestMethod.POST)
+	 * public @ResponseBody Panier getPanier(@RequestParam("id") int id) { return
+	 * dao.getPanier(id); }
+	 */
+
+	@RequestMapping(value = "/enregistrerPanier", method = RequestMethod.GET)
+	public @ResponseBody Resultat enregistrerPanier(@ModelAttribute @Valid Panier p, BindingResult bres
+	// ?? @ModelAttribute(value="client" @Valid Utilisateur u, BindingResult bres
+
+	) {
 		System.out.println("enregistrer");
-		
+
 		Resultat res = new Resultat();
-		
+
 		if (bres.hasErrors()) {
 			res.setRes(false);
 			for (FieldError fe : bres.getFieldErrors()) {
-				System.out.println(fe.getField()+" "+fe.getDefaultMessage());
+				System.out.println(fe.getField() + " " + fe.getDefaultMessage());
 				res.getErr().put(fe.getField(), fe.getDefaultMessage());
 			}
 
-		}
-		else {
+		} else {
 			res.setRes(true);
 			Panier pan = new Panier();
 			pan.setAdresseFacturation("testBackEnd");
-			pan.setIdClient(1);
+			pan.setClient_idClient(1);
 			dao.enregistrerPanier(p);
 		}
 		return res;

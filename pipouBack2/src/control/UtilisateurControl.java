@@ -1,13 +1,11 @@
 package control;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import bean.Client;
-import bean.Utilisateur;
+import bean.Film;
 import dao.Dao;
 
 @Controller
@@ -38,7 +36,7 @@ public class UtilisateurControl {
 
 	@RequestMapping(value="/enregistrer",method=RequestMethod.GET)
 	public @ResponseBody Resultat enregistrer(
-			@ModelAttribute @Valid Utilisateur u, BindingResult bres 
+			@ModelAttribute @Valid Client u, BindingResult bres 
 			// ?? @ModelAttribute(value="client" @Valid Utilisateur u, BindingResult bres 
 			
 		) {
@@ -72,9 +70,7 @@ public class UtilisateurControl {
 	}
 
 	@RequestMapping(value="/connection",method=RequestMethod.POST)
-	public @ResponseBody Integer enregistrer(
-			 BindingResult bres			
-		) {
+	public @ResponseBody int Connection(Client c) {
 		/*
 		Client c = dao.RechercheUtilisateur(login, pwd);
 		if( c != null) {
