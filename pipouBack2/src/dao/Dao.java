@@ -73,6 +73,30 @@ public class Dao {
 		return panier;
 	}
 	
+	//COMMENTAIRE	
+	public List<Commentaire> listerCommentaire(int id) {
+		List<Commentaire> lst = em.createQuery("select u from Commentaire u where u.Film_idFilm LIKE :id").setParameter("id", id).getResultList();
+		System.out.println("*****" + lst.get(0).getTexte());
+		return lst;
+	}
+	
+	public Commentaire getCommentaire(int id) {
+		Commentaire commentaire = (Commentaire) em.createQuery("select u from Commentaire u where u.idCommentaire LIKE :id").setParameter("id", id).getSingleResult();
+		return commentaire;
+	}
+
+	public List<Commentaire> enregistrerCommentaire(int client_idClient, int film_idFilm, String texte, Date date) {
+		Commentaire com = new Commentaire(client_idClient, film_idFilm, texte, date);
+		//Commentaire
+		em.getTransaction().begin();
+		em.persist(com);
+		em.getTransaction().commit();
+		return this.listerCommentaire(com.getFilm_idFilm());
+	}	
+	
+	//TODO : UpdateCommentaire
+	//TODO : Supprimer Commentaire
+	
 	
 	
 }

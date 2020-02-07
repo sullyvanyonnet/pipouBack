@@ -12,6 +12,7 @@ import javax.persistence.Table;
 @Table(name="Commentaire")
 public class Commentaire {
 
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer idCommentaire;
@@ -19,7 +20,17 @@ public class Commentaire {
 	Integer Film_idFilm;
 	String texte;
 	Date date;
-
+	
+	public Commentaire() {}
+	
+	public Commentaire(Integer client_idClient, Integer film_idFilm, String texte, Date date) {
+		super();
+		Client_idClient = client_idClient;
+		Film_idFilm = film_idFilm;
+		this.texte = texte;
+		this.date = date;
+	}
+	
 	public Integer getIdCommentaire() {
 		return idCommentaire;
 	}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Gestion des commentaires</title>
+
+<script type="text/javascript" src="commun_js/jquery/jquery-3.2.1.min.js" ></script>
+<script type="text/javascript" src="commun_js/jquery/jquery-ui-1.12.1.min.js" ></script>
+<link rel="stylesheet" href="commun_js/jquery/jquery-ui-1.12.1.min.css" />           
+
+<script type="text/javascript">
+
+var commentaires = [];
+
+function Commentaire(Client_idClient, Film_idFilm, texte, date) {
+	this.Client_idClient = Client_idClient;
+	this.Film_idFilm = Film_idFilm;
+	this.texte = texte;
+	this.date = date;
+}
+
+$(document).ready(function() {
+	
+});
+
+function enregistrer() {
+	var Client_idClient = $("#Client_idClient").val();
+	var Film_idFilm = $("#Film_idFilm").val();
+	var texte = $("#texte").val();
+	var date = $("#date").val();
+	
+	$.ajax({
+		method : "get",
+		url : "enregistrerCommentaire.htm",
+		data : {Client_idClient : Client_idClient, 
+				Film_idFilm : Film_idFilm,
+				texte : texte,
+				date : date},
+		dataType : "json",
+		success : function(data) {
+			commentaires = data;
+			afficherTout();			
+		}
+	});
+}
+
+function lister(id) {
+	$.ajax({
+		method : "get",
+		url : "listerCommentaire.htm",
+		dataType : "json",
+		data : {id},
+		success : function(data) {
+			commentaires = data;
+			afficherTout();
+		}
+	});
+}
+
+function afficherTout() {
+	var mess = "";
+	for (var i=0 ; i<commentaires.length ; i++) {
+		mess += commentaires[i].texte + " ";
+	}
+	alert(mess);
+}
+</script>
+
+</head>
+
+<body>
+
+Client_idClient :
+<input id="Client_idClient" type="text" />
+Film_idFilm :
+<input id="Film_idFilm" type="text" />
+texte :
+<input id="texte" type="text" />
+date :
+<input id="date" type="text" />
+<input type="submit" value="Enregistrer" onclick="enregistrer()"/>
+
+<br /><br />
+
+<input type="submit" value="Lister" onclick="lister(1)"/>
+
+</body>
+</html>
+
