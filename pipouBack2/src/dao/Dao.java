@@ -63,6 +63,17 @@ public class Dao {
 		return film;
 	}
 	
+	public Client RechercheUtilisateur(String login, String password) {
+		List<com.sun.security.ntlm.Client> c =  em.createQuery("select u from Client u where u.login = :login AND u.password = :password")
+				.setParameter("login", login)
+				.setParameter("password", password)
+				.getResultList();
+		if(c.size() != 0) {
+			return c.get(0);
+		}
+		return null;
+	}
+	
 	
 	public void enregistrerPanier(Panier p) {
 		em.getTransaction().begin();

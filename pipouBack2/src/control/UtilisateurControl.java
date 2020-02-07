@@ -71,13 +71,14 @@ public class UtilisateurControl {
 
 	@RequestMapping(value="/connection",method=RequestMethod.POST)
 	public @ResponseBody int Connection(Client c) {
-		/*
-		Client c = dao.RechercheUtilisateur(login, pwd);
+		System.out.println(c.getLogin());
+		Client ClienTrouve = dao.RechercheUtilisateur(c.getLogin(), c.getPassword());
+		System.out.println(ClienTrouve.toString());
 		if( c != null) {
-			return c.getIdUtilisateur();
+			
+			return ClienTrouve.getIdClient();
 		};
 		bres.addError(new ObjectError("Login incorrect", "Login incorrect"));
-		return null;*/
-		return 1;
+		return 0;
 	}
 }
