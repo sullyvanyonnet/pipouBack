@@ -76,7 +76,7 @@ public class Dao {
 	
 	
 	//PANIER
-	public Panier enregistrerPanier(String adresseFacturation, int client_idClient) {
+	public Panier enregistrerPanier(String adresseFacturation, Integer client_idClient) {
 		Panier pan = new Panier(adresseFacturation, client_idClient);
 		//Commentaire
 		em.getTransaction().begin();
@@ -88,11 +88,6 @@ public class Dao {
 	public Panier getPanier(int id) {
 		Panier panier = (Panier) em.createQuery("select u from Panier u where u.idPanier LIKE :id").setParameter("id", id).getSingleResult();
 		System.out.println(panier.getAdresseFacturation());
-		return panier;
-	}
-
-	public Panier getPanier(int id) {
-		Panier panier = (Panier) em.createQuery("select u from Panier u where u.idPanier LIKE :id").setParameter("id", id).getSingleResult();
 		return panier;
 	}
 	
