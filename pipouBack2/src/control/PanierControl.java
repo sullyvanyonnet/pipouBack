@@ -25,35 +25,18 @@ public class PanierControl {
 	public PanierControl() {
 	}
 
-	/*
-	 * @RequestMapping(value="/getpanier{id}",method=RequestMethod.POST)
-	 * public @ResponseBody Panier getPanier(@RequestParam("id") int id) { return
-	 * dao.getPanier(id); }
-	 */
+
+	 @RequestMapping(value="/getPanier{id}",method=RequestMethod.POST)
+	 public @ResponseBody Panier getPanier(@RequestParam("id") int id) { 
+		 System.out.println(id);
+		 return dao.getPanier(id); 
+	 }
+	 
 
 	@RequestMapping(value = "/enregistrerPanier", method = RequestMethod.GET)
-	public @ResponseBody Resultat enregistrerPanier(@ModelAttribute @Valid Panier p, BindingResult bres
-	// ?? @ModelAttribute(value="client" @Valid Utilisateur u, BindingResult bres
-
-	) {
-		System.out.println("enregistrer");
-
-		Resultat res = new Resultat();
-
-		if (bres.hasErrors()) {
-			res.setRes(false);
-			for (FieldError fe : bres.getFieldErrors()) {
-				System.out.println(fe.getField() + " " + fe.getDefaultMessage());
-				res.getErr().put(fe.getField(), fe.getDefaultMessage());
-			}
-
-		} else {
-			res.setRes(true);
-			Panier pan = new Panier();
-			pan.setAdresseFacturation("testBackEnd");
-			pan.setClient_idClient(1);
-			dao.enregistrerPanier(p);
-		}
-		return res;
+	public @ResponseBody Panier enregistrerPanier(
+			@RequestParam("Client_idClient") Integer client_idClient,
+			@RequestParam("adresseFacturation") String adresseFacturation) {
+		return dao.enregistrerPanier(adresseFacturation, client_idClient);
 	}
 }

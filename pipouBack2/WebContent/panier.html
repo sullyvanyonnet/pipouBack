@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Gestion de panier</title>
+
+<script type="text/javascript" src="commun_js/jquery/jquery-3.2.1.min.js" ></script>
+<script type="text/javascript" src="commun_js/jquery/jquery-ui-1.12.1.min.js" ></script>
+<link rel="stylesheet" href="commun_js/jquery/jquery-ui-1.12.1.min.css" />           
+
+<script type="text/javascript">
+
+var panier = [];
+
+$(document).ready(function() {
+	
+});
+
+function enregistrer() {
+	var Client_idClient = $("#Client_idClient").val();
+	var adresseFacturation = $("#adresseFacturation").val();
+	
+	$.ajax({
+		method : "get",
+		url : "enregistrerPanier.htm",
+		data : {Client_idClient : Client_idClient, 
+				adresseFacturation : adresseFacturation},
+		dataType : "json",
+		success : function(data) {
+			panier = data;
+			afficherUn();			
+		}
+	});
+}
+
+function get(id) {
+	$.ajax({
+		method : "get",
+		url : "getPanier.htm",
+		dataType : "json",
+		data : {id},
+		success : function(data) {
+			panier = data;
+			afficherUn();
+		}
+	});
+}
+
+function afficherUn() {
+	var mess = "**" + panier.adresse ;	
+	alert(mess);
+}
+</script>
+
+</head>
+
+<body>
+
+Client_idClient :
+<input id="Client_idClient" type="text" />
+adresseFacturation :
+<input id="adresseFacturation" type="text" />
+<input type="submit" value="Enregistrer" onclick="enregistrer()"/>
+
+<br /><br />
+
+<input type="submit" value="get" onclick="get(14)"/>
+
+</body>
+</html>
+

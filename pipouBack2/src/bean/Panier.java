@@ -10,12 +10,19 @@ import javax.persistence.Table;
 @Table(name="Panier")
 public class Panier {
 
-	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer idPanier;
 	String adresseFacturation;
 	Integer Client_idClient;		/*fk ?*/
+	
+	public Panier() {}
+	
+	public Panier(String adresseFacturation, Integer client_idClient) {
+		super();
+		this.adresseFacturation = adresseFacturation;
+		Client_idClient = client_idClient;
+	}
 	
 	public Integer getIdPanier() {
 		return idPanier;
@@ -34,6 +41,5 @@ public class Panier {
 	}
 	public void setClient_idClient(Integer client_idClient) {
 		Client_idClient = client_idClient;
-	}
-	
+	}	
 }
