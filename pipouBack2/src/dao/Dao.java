@@ -64,7 +64,7 @@ public class Dao {
 	}
 	
 	public Client RechercheUtilisateur(String login, String password) {
-		List<com.sun.security.ntlm.Client> c =  em.createQuery("select u from Client u where u.login = :login AND u.password = :password")
+		List<Client> c =  em.createQuery("select u from Client u where u.login = :login AND u.password = :password")
 				.setParameter("login", login)
 				.setParameter("password", password)
 				.getResultList();

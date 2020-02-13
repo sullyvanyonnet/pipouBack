@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,10 +29,10 @@ public class UtilisateurControl {
 	}
 	
 	@RequestMapping(value="/lister",method=RequestMethod.GET)
-	public @ResponseBody List<Client> lister() {
+	public @ResponseBody int lister() {
 		System.out.println("lister");
 		
-		return dao.listerClients();
+		return 1; //dao.listerClients();
 	}
 
 	@RequestMapping(value="/enregistrer",method=RequestMethod.GET)
@@ -71,14 +72,35 @@ public class UtilisateurControl {
 
 	@RequestMapping(value="/connection",method=RequestMethod.POST)
 	public @ResponseBody int Connection(Client c) {
-		System.out.println(c.getLogin());
+		
+		
+		/*System.out.println(c.getLogin());
 		Client ClienTrouve = dao.RechercheUtilisateur(c.getLogin(), c.getPassword());
 		System.out.println(ClienTrouve.toString());
 		if( c != null) {
 			
-			return ClienTrouve.getIdClient();
+			return ClienTrouve.getIdUtilisateur();
 		};
-		bres.addError(new ObjectError("Login incorrect", "Login incorrect"));
+		//bres.addError(new ObjectError("Login incorrect", "Login incorrect"));
 		return 0;
+		*/
+		return 1;
+	}
+	
+	@RequestMapping(value="/toto",method=RequestMethod.GET)
+	public @ResponseBody int toto() {
+		
+		
+		/*System.out.println(c.getLogin());
+		Client ClienTrouve = dao.RechercheUtilisateur(c.getLogin(), c.getPassword());
+		System.out.println(ClienTrouve.toString());
+		if( c != null) {
+			
+			return ClienTrouve.getIdUtilisateur();
+		};
+		//bres.addError(new ObjectError("Login incorrect", "Login incorrect"));
+		return 0;
+		*/
+		return 1;
 	}
 }
