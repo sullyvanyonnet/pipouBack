@@ -1,1 +1,12 @@
 /.metadata/
+pipouBack2/src/META-INF/persistence.xml
+pipouBack2/build/classes/META-INF/persistence.xml
+pipouBack2/.classpath
+pipouBack2/.metadata/.log
+pipouBack2/.metadata/.plugins/org.eclipse.core.resources/.root/2.tree
+pipouBack2/.metadata/.plugins/org.eclipse.core.resources/.root/3.tree
+pipouBack2/.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources
+pipouBack2/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.ide.prefs
+pipouBack2/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
+pipouBack2/.metadata/.plugins/org.eclipse.m2e.logback.configuration/0.log
+pipouBack2/.metadata/version.ini

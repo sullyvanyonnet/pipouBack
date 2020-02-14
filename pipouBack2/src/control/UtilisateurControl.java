@@ -1,7 +1,8 @@
 package control;
 
-import java.util.List;
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +11,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import bean.Client;
-import bean.Film;
 import dao.Dao;
 
 @Controller
@@ -71,36 +72,30 @@ public class UtilisateurControl {
 	}
 
 	@RequestMapping(value="/connection",method=RequestMethod.POST)
-	public @ResponseBody int Connection(Client c) {
+	public @ResponseBody Integer connection(
+			@RequestBody Client c , BindingResult bres 			
+		) {	
 		
-		
-		/*System.out.println(c.getLogin());
-		Client ClienTrouve = dao.RechercheUtilisateur(c.getLogin(), c.getPassword());
-		System.out.println(ClienTrouve.toString());
-		if( c != null) {
-			
-			return ClienTrouve.getIdUtilisateur();
-		};
-		//bres.addError(new ObjectError("Login incorrect", "Login incorrect"));
-		return 0;
-		*/
-		return 1;
+		if(c.getLogin() != null && c.getPassword() != null ) {
+			Client ClienTrouve = dao.RechercheUtilisateur(c.getLogin(), c.getPassword());
+			if(ClienTrouve != null) {
+				return ClienTrouve.getIdUtilisateur();
+			};
+		}
+		bres.addError(new ObjectError("Login incorrect", "Login incorrect"));
+		return null;
 	}
 	
-	@RequestMapping(value="/toto",method=RequestMethod.GET)
-	public @ResponseBody int toto() {
-		
-		
-		/*System.out.println(c.getLogin());
-		Client ClienTrouve = dao.RechercheUtilisateur(c.getLogin(), c.getPassword());
-		System.out.println(ClienTrouve.toString());
-		if( c != null) {
-			
-			return ClienTrouve.getIdUtilisateur();
-		};
-		//bres.addError(new ObjectError("Login incorrect", "Login incorrect"));
-		return 0;
-		*/
-		return 1;
+	public static String getBody(HttpServletRequest request) throws IOException {
+
+		// Read from request
+	    StringBuilder buffer = new StringBuilder();
+	    BufferedReader reader = request.getReader();
+	    String line;
+	    while ((line = reader.readLine()) != null) {
+	        buffer.append(line);
+	    }
+	    String data = buffer.toString();
+	    return data;
 	}
 }

@@ -17,10 +17,10 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer idClient;
 	
-	@NotEmpty(message="Le nom ne peut pas être vide")
+	//@NotEmpty(message="Le nom ne peut pas être vide")
 	String nom;
 	
-	@NotEmpty(message="Le prénom ne peut pas être vide")
+	//@NotEmpty(message="Le prénom ne peut pas être vide")
 	String prenom;
 	
 	@NotEmpty(message="Le nom ne peut pas être vide")
