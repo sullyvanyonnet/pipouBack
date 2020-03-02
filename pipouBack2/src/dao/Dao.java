@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import bean.Client;
 import bean.Commentaire;
+import bean.Elementpanier;
 import bean.Film;
 import bean.Panier;
 import data.Data;
@@ -91,6 +93,12 @@ public class Dao {
 		return panier;
 	}
 	
+
+	public Panier GetIdPanier(int idClient) {
+		Panier panier = (Panier) em.createQuery("select u from Panier u where u.Client_idClient LIKE :id").setParameter("id", idClient).getSingleResult();
+		return panier;
+	}
+	
 	//COMMENTAIRE	
 	public List<Commentaire> listerCommentaire(int id) {
 		List<Commentaire> lst = em.createQuery("select u from Commentaire u where u.Film_idFilm LIKE :id").setParameter("id", id).getResultList();
@@ -115,6 +123,41 @@ public class Dao {
 	//TODO : UpdateCommentaire
 	//TODO : Supprimer Commentaire
 	
+	
+	
+	//CONTROLLEUR ELEMENT PANIER
+	
+	public List<Film> getElementPanier(int id) {
+		//recuperer l'id du panier d'un utilisateur
+		Panier unPanier = (Panier)  em.createQuery("select u from Panier u where u.Client_idClient LIKE :id").setParameter("id", id).getSingleResult();
+		if(unPanier == null ) {
+			return null;
+		}
+		
+		//recuperer la liste des id des films qui compose le panier
+		List<Elementpanier> elemnts = em.createQuery("select u from Elementpanier u where u.panier_idPanier LIKE :id").setParameter("id", unPanier.getIdPanier()).getResultList();
+		List<Film> films = new ArrayList<Film>(); 
+		
+		if(elemnts == null || elemnts.isEmpty() ) {
+			return null;
+		}
+		
+		//recuperer les informations des films
+		for (int  i = 0 ; i < elemnts.size()  ; i++){
+			films.add(getFilm(elemnts.get(i).getFilm_idFilm()));
+		}
+        	return films;
+	}
+	
+	public List<Elementpanier> estDejaDansPanier(int idPanier, int idFilm) {
+		List<Elementpanier> elemnts = em.createQuery("select u from Elementpanier u where u.panier_idPanier = :login AND u.Film_idFilm = :password")
+				.setParameter("login", idPanier)
+				.setParameter("password", idFilm)
+				.getResultList();
+
+		
+		return elemnts;
+	}
 	
 	
 }
