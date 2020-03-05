@@ -80,6 +80,16 @@ public class Dao {
 		return null;
 	}
 	
+	public Client rechercheUtilisateurNom(Integer id) {
+		List<Client> c =  em.createQuery("select u from Client u where u.idClient = :id")
+				.setParameter("id", id)
+				.getResultList();
+		if(c.size() != 0) {
+			return c.get(0);
+		}
+		return null;
+	}
+	
 	
 	//PANIER
 	public Panier enregistrerPanier(String adresseFacturation, Integer client_idClient) {
