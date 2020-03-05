@@ -16,10 +16,18 @@ public class Commande {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer idcommande;
-	Integer statut_idstatut;	/*fk ?*/
+	Integer statut_idstatut;	
 	Date dateComande;
-	Integer panier_idPanier;	/*fk ?*/
+	Integer panier_idPanier;	
 	
+	public Commande() {}
+	
+	public Commande(Integer statut_idstatut, Date dateComande, Integer panier_idPanier) {
+		super();
+		this.statut_idstatut = statut_idstatut;
+		this.dateComande = dateComande;
+		this.panier_idPanier = panier_idPanier;
+	}
 	public Integer getIdcommande() {
 		return idcommande;
 	}

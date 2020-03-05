@@ -35,6 +35,9 @@ public class PanierControl {
 		 System.out.println(id);
 		 return dao.getPanier(id); 
 	 }
+	 
+	 //http://localhost:8080/pipouBack2/getPanier?id=16
+		 
 	@RequestMapping(value = "/enregistrerPanier", method = RequestMethod.GET)
 	public @ResponseBody Panier enregistrerPanier(
 			@RequestParam("Client_idClient") Integer client_idClient,

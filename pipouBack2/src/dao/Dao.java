@@ -7,17 +7,21 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
 import bean.Client;
+import bean.Commande;
 import bean.Commentaire;
 import bean.Elementpanier;
 import bean.Film;
+import bean.Historique;
 import bean.Panier;
 import data.Data;
 
 @Service
+@Transactional 
 public class Dao {
 
 	static EntityManagerFactory emf = null;
@@ -126,7 +130,6 @@ public class Dao {
 	
 	
 	//CONTROLLEUR ELEMENT PANIER
-	
 	public List<Film> getElementPanier(int id) {
 		//recuperer l'id du panier d'un utilisateur
 		Panier unPanier = (Panier)  em.createQuery("select u from Panier u where u.Client_idClient LIKE :id").setParameter("id", id).getSingleResult();
@@ -146,7 +149,7 @@ public class Dao {
 		for (int  i = 0 ; i < elemnts.size()  ; i++){
 			films.add(getFilm(elemnts.get(i).getFilm_idFilm()));
 		}
-        	return films;
+        return films;
 	}
 	
 	public List<Elementpanier> estDejaDansPanier(int idPanier, int idFilm) {
@@ -157,6 +160,73 @@ public class Dao {
 
 		
 		return elemnts;
+	}
+
+	public Commande enregistrerCommande(int idPanier) {
+		java.util.Date utilDate = new java.util.Date();
+		Commande com = new Commande(1, new Date(utilDate.getTime()), idPanier);
+		em.getTransaction().begin();
+		em.persist(com);
+		em.getTransaction().commit();
+		return com;
+	}
+
+	public void payerCommande(int idPanier,  int idCommande, int idClient) {
+		// TODO changer le statut de la commande
+	/*	Query query = em.createQuery(
+			      "UPDATE Commande SET statut = 1 " +
+			      "WHERE idCommande = :p");
+		
+		int updateCount = 0;
+		updateCount = query.setParameter("p", idCommande).executeUpdate();*/
+	//	if(updateCount>0)
+			this.historiserPanier(idPanier, idCommande, idClient);
+	}
+
+	public Panier historiserPanier(int idPanier, int idCommande, int idClient) {
+		
+		List<Elementpanier> elements = em.createQuery("select u from Elementpanier u where u.panier_idPanier LIKE :id").setParameter("id", idPanier).getResultList();
+		List<Film> films = new ArrayList<Film>(); 
+		
+		if(elements == null || elements.isEmpty() ) {
+			return null;
+		}
+		
+		//recuperer les informations des films
+		for (int  i = 0 ; i < elements.size()  ; i++){
+			films.add(getFilm(elements.get(i).getFilm_idFilm()));
+		}		
+		
+		for(Film f : films) {
+			Historique histo = new Historique(idCommande, f.getIdFilm(), idClient);
+			//ajout histo
+			em.getTransaction().begin();
+			em.persist(histo);
+			em.getTransaction().commit();
+		}
+		
+		for(Elementpanier e : elements) {
+			System.out.println("*"+e.getIdElementPanier());
+			em.getTransaction().begin();
+			em.remove(e);	
+			em.getTransaction().commit();
+		}
+		//delete elementPanier
+	/*	Query query = em.createQuery("DELETE FROM Elementpanier e WHERE e.panier_idPanier=:idPanier ");
+		query.setParameter("idPanier", idPanier);*/
+//		em.getTransaction();
+//		int deletedOk = em.createNativeQuery("DELETE FROM Elementpanier WHERE panier_idPanier =" + idPanier).executeUpdate();
+//		em.getTransaction().commit();
+//		String query = "DELETE FROM Elementpanier WHERE panier_idPanier =" + idPanier;
+//		this.delete(query);
+		return this.getPanier(idPanier);
+	}
+	
+	@Transactional
+	public void delete(String query) {
+		em.createNativeQuery(query)
+	      // parameters
+	      .executeUpdate();
 	}
 	
 	
