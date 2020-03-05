@@ -35,17 +35,20 @@ public class CommentaireControl {
 		System.out.println("lister");
 		return dao.listerCommentaire(id);
 	}
+	
+	//http://localhost:8080/pipouBack2/enregistrerCommentaire?Client_idClient=1
+										//&Film_idFilm=1
+										//&texte="Yeah !"
 
 	@RequestMapping(value="/enregistrerCommentaire",method=RequestMethod.GET)
 	public @ResponseBody  List<Commentaire> enregistrer(
 			@RequestParam("Client_idClient") int client_idClient,
 			@RequestParam("Film_idFilm") int film_idFilm,
-			@RequestParam("texte") String texte,
-			@RequestParam("date") Date date) {
+			@RequestParam("texte") String texte) {
 		
 		System.out.println("enregistrer " + texte);
 		
 		
-		return dao.enregistrerCommentaire(client_idClient, film_idFilm, texte, date);
+		return dao.enregistrerCommentaire(client_idClient, film_idFilm, texte);
 	}
 }

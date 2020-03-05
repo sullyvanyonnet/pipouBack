@@ -125,9 +125,13 @@ public class Dao {
 		return commentaire;
 	}
 
-	public List<Commentaire> enregistrerCommentaire(int client_idClient, int film_idFilm, String texte, Date date) {
+	public List<Commentaire> enregistrerCommentaire(int client_idClient, int film_idFilm, String texte) {
+		java.util.Date utilDate = new java.util.Date();
+		Date date = new Date(utilDate.getTime());
+		
 		Commentaire com = new Commentaire(client_idClient, film_idFilm, texte, date);
 		//Commentaire
+		
 		em.getTransaction().begin();
 		em.persist(com);
 		em.getTransaction().commit();
