@@ -173,7 +173,7 @@ public class Dao {
 
 	public void payerCommande(int idPanier,  int idCommande, int idClient) {
 		// TODO changer le statut de la commande
-	/*	Query query = em.createQuery(
+		/*Query query = em.createQuery(
 			      "UPDATE Commande SET statut = 1 " +
 			      "WHERE idCommande = :p");
 		
@@ -211,23 +211,6 @@ public class Dao {
 			em.remove(e);	
 			em.getTransaction().commit();
 		}
-		//delete elementPanier
-	/*	Query query = em.createQuery("DELETE FROM Elementpanier e WHERE e.panier_idPanier=:idPanier ");
-		query.setParameter("idPanier", idPanier);*/
-//		em.getTransaction();
-//		int deletedOk = em.createNativeQuery("DELETE FROM Elementpanier WHERE panier_idPanier =" + idPanier).executeUpdate();
-//		em.getTransaction().commit();
-//		String query = "DELETE FROM Elementpanier WHERE panier_idPanier =" + idPanier;
-//		this.delete(query);
 		return this.getPanier(idPanier);
-	}
-	
-	@Transactional
-	public void delete(String query) {
-		em.createNativeQuery(query)
-	      // parameters
-	      .executeUpdate();
-	}
-	
-	
+	}	
 }
