@@ -139,7 +139,6 @@ public class Dao {
 	
 	
 	
-<<<<<<< HEAD
 	//CONTROLLEUR ELEMENT PANIER
 	
 	public List<Film> getElementPanier(int id) {
@@ -226,6 +225,7 @@ public class Dao {
 		}
 		return this.getPanier(idPanier);
 	}	
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 	
@@ -234,4 +234,6 @@ public class Dao {
 =======
 >>>>>>> parent of 8656968... pas fini
 >>>>>>> parent of ff2b2ff... test
+=======
+>>>>>>> parent of a2fe10f... test
 }
