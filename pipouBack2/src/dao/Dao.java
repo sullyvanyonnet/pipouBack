@@ -143,6 +143,7 @@ public class Dao {
 	
 	
 	
+<<<<<<< HEAD
 	//CONTROLLEUR ELEMENT PANIER
 	public List<Film> getElementPanier(int id) {
 		//recuperer l'id du panier d'un utilisateur
@@ -227,4 +228,6 @@ public class Dao {
 		}
 		return this.getPanier(idPanier);
 	}	
+=======
+>>>>>>> parent of 8656968... pas fini
 }
