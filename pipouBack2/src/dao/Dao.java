@@ -107,12 +107,6 @@ public class Dao {
 		return panier;
 	}
 	
-
-	public Panier GetIdPanier(int idClient) {
-		Panier panier = (Panier) em.createQuery("select u from Panier u where u.Client_idClient LIKE :id").setParameter("id", idClient).getSingleResult();
-		return panier;
-	}
-	
 	//COMMENTAIRE	
 	public List<Commentaire> listerCommentaire(int id) {
 		List<Commentaire> lst = em.createQuery("select u from Commentaire u where u.Film_idFilm LIKE :id").setParameter("id", id).getResultList();
@@ -143,7 +137,6 @@ public class Dao {
 	
 	
 	
-<<<<<<< HEAD
 	//CONTROLLEUR ELEMENT PANIER
 	public List<Film> getElementPanier(int id) {
 		//recuperer l'id du panier d'un utilisateur
@@ -228,6 +221,4 @@ public class Dao {
 		}
 		return this.getPanier(idPanier);
 	}	
-=======
->>>>>>> parent of 8656968... pas fini
 }
