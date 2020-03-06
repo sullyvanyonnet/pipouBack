@@ -35,16 +35,7 @@ public class PanierControl {
 		 System.out.println(id);
 		 return dao.getPanier(id); 
 	 }
-<<<<<<< HEAD
-	 
-	 //http://localhost:8080/pipouBack2/getPanier?id=16
-		 
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of 703ff36... requete commander ok
-=======
->>>>>>> parent of ff2b2ff... test
 	@RequestMapping(value = "/enregistrerPanier", method = RequestMethod.GET)
 	public @ResponseBody Panier enregistrerPanier(
 			@RequestParam("Client_idClient") Integer client_idClient,

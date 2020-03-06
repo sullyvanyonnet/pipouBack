@@ -112,7 +112,6 @@ public class Dao {
 	//COMMENTAIRE	
 	public List<Commentaire> listerCommentaire(int id) {
 		List<Commentaire> lst = em.createQuery("select u from Commentaire u where u.Film_idFilm LIKE :id").setParameter("id", id).getResultList();
-		System.out.println("*****" + lst.get(0).getTexte());
 		return lst;
 	}
 	//pas testé
@@ -172,7 +171,6 @@ public class Dao {
 		
 		return elemnts;
 	}
-<<<<<<< HEAD
 
 	public Commande enregistrerCommande(int idPanier) {
 		java.util.Date utilDate = new java.util.Date();
@@ -225,15 +223,4 @@ public class Dao {
 		}
 		return this.getPanier(idPanier);
 	}	
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-	
-	
->>>>>>> parent of 703ff36... requete commander ok
-=======
->>>>>>> parent of 8656968... pas fini
->>>>>>> parent of ff2b2ff... test
-=======
->>>>>>> parent of a2fe10f... test
 }
