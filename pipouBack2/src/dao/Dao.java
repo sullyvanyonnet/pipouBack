@@ -7,21 +7,17 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
 import bean.Client;
-import bean.Commande;
 import bean.Commentaire;
 import bean.Elementpanier;
 import bean.Film;
-import bean.Historique;
 import bean.Panier;
 import data.Data;
 
 @Service
-@Transactional 
 public class Dao {
 
 	static EntityManagerFactory emf = null;
@@ -138,6 +134,7 @@ public class Dao {
 	
 	
 	//CONTROLLEUR ELEMENT PANIER
+	
 	public List<Film> getElementPanier(int id) {
 		//recuperer l'id du panier d'un utilisateur
 		Panier unPanier = (Panier)  em.createQuery("select u from Panier u where u.Client_idClient LIKE :id").setParameter("id", id).getSingleResult();
@@ -157,7 +154,7 @@ public class Dao {
 		for (int  i = 0 ; i < elemnts.size()  ; i++){
 			films.add(getFilm(elemnts.get(i).getFilm_idFilm()));
 		}
-        return films;
+        	return films;
 	}
 	
 	public List<Elementpanier> estDejaDansPanier(int idPanier, int idFilm) {
@@ -169,6 +166,7 @@ public class Dao {
 		
 		return elemnts;
 	}
+<<<<<<< HEAD
 
 	public Commande enregistrerCommande(int idPanier) {
 		java.util.Date utilDate = new java.util.Date();
@@ -221,4 +219,8 @@ public class Dao {
 		}
 		return this.getPanier(idPanier);
 	}	
+=======
+	
+	
+>>>>>>> parent of 703ff36... requete commander ok
 }
