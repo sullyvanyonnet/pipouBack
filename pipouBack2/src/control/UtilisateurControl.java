@@ -2,6 +2,7 @@ package control;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -97,5 +98,12 @@ public class UtilisateurControl {
 	    }
 	    String data = buffer.toString();
 	    return data;
+	}
+	
+	//http://localhost:8080/pipouBack2/rechercheNomUtilisateur?idUtilisateur=1
+	
+	@RequestMapping(value="/rechercheNomUtilisateur{idUtilisateur}",method=RequestMethod.GET)
+	public @ResponseBody String rechercheNomUtilisateur(@RequestParam("idUtilisateur") int id) {
+		return dao.rechercheUtilisateurNom(id).getLogin();
 	}
 }
