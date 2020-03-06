@@ -133,6 +133,7 @@ public class Dao {
 	
 	
 	
+<<<<<<< HEAD
 	//CONTROLLEUR ELEMENT PANIER
 	
 	public List<Film> getElementPanier(int id) {
@@ -220,6 +221,7 @@ public class Dao {
 		return this.getPanier(idPanier);
 	}	
 =======
+<<<<<<< HEAD
 	
 	
 >>>>>>> parent of 703ff36... requete commander ok
